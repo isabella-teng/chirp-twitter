@@ -11,10 +11,21 @@ import UIKit
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var userProfilePic: UIImageView!
+    @IBOutlet weak var twitterHandleLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    
+    //add retween, like buttons
     
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
+            timestampLabel.text = tweet.createdAtString
+            screenNameLabel.text = tweet.user.name
+            twitterHandleLabel.text = "@" + tweet.user.screenName!
+            
+            
         }
     }
     

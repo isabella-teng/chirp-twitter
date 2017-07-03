@@ -20,8 +20,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = 200 //UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
         APIManager.shared.getHomeTimeLine { (tweets, error) in
             if let tweets = tweets {

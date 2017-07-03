@@ -14,7 +14,7 @@ import KeychainAccess
 
 class APIManager: SessionManager {
     
-    // MARK: TODO: Add App Keys
+    //add app keys
     static let consumerKey = "Dat8BZ9XpbjrYo7REvH0sv2rx"
     static let consumerSecret = "8Av7MhHyk45Tj7e40yeHR9M6F0M8QlIhNeCIxa0WMCCdtL2xoK"
     
@@ -94,7 +94,7 @@ class APIManager: SessionManager {
 //            return
 //        }
         
-        
+        //Call Alamofire request method
         request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get)
             .validate()
             .responseJSON { (response) in

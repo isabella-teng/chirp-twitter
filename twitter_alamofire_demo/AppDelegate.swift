@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: TODO: Check for logged in user
         
-        if let currentUser = User.current {
+        if User.current != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let timelineNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             self.window?.rootViewController = timelineNavController
