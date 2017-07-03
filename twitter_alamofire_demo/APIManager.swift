@@ -56,16 +56,7 @@ class APIManager: SessionManager {
         clearCredentials() //this clears the tokens in keychain
         
         // TODO: Clear current user by setting it to nil
-        //user = nil
-        //User.current = nil
-        //UserDefaults.
-        
-//        getCurrentAccount { (user: User?, error: Error?) in
-//            if let user = user {
-//                User.current = nil
-//            }
-//        }
-        
+        User.current = nil
 
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
