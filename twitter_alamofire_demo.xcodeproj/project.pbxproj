@@ -162,8 +162,8 @@
 		ED1AFD2F1E942B2500FD4B90 /* twitter_alamofire_demo */ = {
 			isa = PBXGroup;
 			children = (
-				FAA9ABF11F0AE4A800520429 /* Custom Fonts */,
 				ED1AFD341E942B2500FD4B90 /* Main.storyboard */,
+				FAA9ABF11F0AE4A800520429 /* Custom Fonts */,
 				ED1D23501EF7650B00C51ACC /* API */,
 				ED1D23491EF6E38100C51ACC /* Models */,
 				ED1D234F1EF71C5100C51ACC /* Views */,

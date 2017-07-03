@@ -18,12 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: TODO: Check for logged in user
         
-        NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
-            print("Logout notification received")
+        if let currentUser = User.current {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            self.window?.rootViewController = loginVC
+            let timelineNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+            self.window?.rootViewController = timelineNavController
+            
+        } else {
+            NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+                print("Logout notification received")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                self.window?.rootViewController = loginVC
+            }
         }
+        
         
         return true
     }
