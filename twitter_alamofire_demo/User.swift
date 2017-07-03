@@ -10,18 +10,20 @@ import Foundation
 
 class User {
     
+    //properties of user
     var name: String
+    var screenName: String? 
     
     // For user persistance
     var dictionary: [String: Any]?
     private static var _current: User?
     
     
-    
     init(dictionary: [String: Any]) {
+        // Initialize properties
         self.dictionary = dictionary
-        
         name = dictionary["name"] as! String
+        screenName = dictionary["screen_name"] as? String
     }
     
     static var current: User? {

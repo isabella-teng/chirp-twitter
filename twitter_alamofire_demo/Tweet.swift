@@ -29,9 +29,11 @@ class Tweet {
         retweetCount = dictionary["retweet_count"] as! Int
         retweeted = dictionary["retweeted"] as! Bool
         
+        //initialize user
         let user = dictionary["user"] as! [String: Any]
         self.user = User(dictionary: user)
         
+        //Format and set createdAtString
         let createdAtOriginalString = dictionary["created_at"] as! String
         let formatter = DateFormatter()
         // Configure the input format to parse the date string
@@ -43,8 +45,16 @@ class Tweet {
         formatter.timeStyle = .none
         // Convert Date to String
         createdAtString = formatter.string(from: date)
-        
-        
+    }
+    
+    //returns tweets when initialized with array of Tweets
+    static func tweets(with array: [[String: Any]]) -> [Tweet] {
+        var tweets: [Tweet] = []
+        for tweetDictionary in array {
+            let tweet = Tweet(dictionary: tweetDictionary)
+            tweets.append(tweet)
+        }
+        return tweets
     }
 }
 
