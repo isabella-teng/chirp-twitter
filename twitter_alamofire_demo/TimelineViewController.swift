@@ -34,27 +34,22 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.didPullToRefresh(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
     }
     
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         
+        APIManager.shared.getHomeTimeLine { (tweets, error) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            } else if let error = error {
+                print("Error getting home timeline: " + error.localizedDescription)
+            }
+        }
         
-//        // ... Create the URLRequest `myRequest` ...
-//        
-//        // Configure session so that completion handler is executed on main UI thread
-//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-//        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-//            
-//            // ... Use the new data to update the data source ...
-//            
-//            // Reload the tableView now that there is new data
-//            myTableView.reloadData()
-//            
-//            // Tell the refreshControl to stop spinning
-//            refreshControl.endRefreshing()
-//        }
-//        task.resume()
+        refreshControl.endRefreshing()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

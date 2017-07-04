@@ -26,10 +26,9 @@ class TweetCell: UITableViewCell {
             timestampLabel.text = tweet.createdAtString
             screenNameLabel.text = tweet.user.name
             twitterHandleLabel.text = "@" + tweet.user.screenName!
-            print("entered!!")
+
             let validURL = URL(string: tweet.user.profPicURLString!)
             if validURL != nil{
-                //print("entered!!")
                 userProfilePic.af_setImage(withURL: validURL!)
             }
             
