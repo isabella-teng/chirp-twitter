@@ -19,6 +19,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     
     //add retweet, like buttons
+    var retweeted: Bool = false
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
+    @IBOutlet weak var retweetButton: UIButton!
     
     var tweet: Tweet! {
         didSet {
@@ -33,6 +37,19 @@ class TweetCell: UITableViewCell {
             }
             
         }
+    }
+    
+    @IBAction func onRetweetButton(_ sender: Any) {
+        if retweeted == false {
+            retweetButton.isSelected = true
+            retweeted = true
+        } else {
+            retweetButton.isSelected = false
+        }
+        
+    }
+    
+    @IBAction func onFavoriteButton(_ sender: Any) {
     }
     
     override func awakeFromNib() {

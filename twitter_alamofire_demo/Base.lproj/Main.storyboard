@@ -150,6 +150,9 @@
                                                     </constraints>
                                                     <state key="normal" image="favor-icon"/>
                                                     <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="onFavoriteButton:" destination="U1g-kw-izy" eventType="touchUpInside" id="QUR-67-4OO"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CC-Q5-Wfq">
                                                     <rect key="frame" x="104" y="108" width="30" height="30"/>
@@ -159,6 +162,9 @@
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
                                                     <state key="selected" image="retweet-icon-green"/>
+                                                    <connections>
+                                                        <action selector="onRetweetButton:" destination="U1g-kw-izy" eventType="touchUpInside" id="rmO-W0-Xb8"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAp-b0-Otg">
                                                     <rect key="frame" x="208" y="108" width="30" height="30"/>
@@ -221,6 +227,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteCountLabel" destination="OAp-b0-Otg" id="weH-nR-pgd"/>
+                                            <outlet property="retweetButton" destination="7CC-Q5-Wfq" id="0xz-lS-Iiq"/>
+                                            <outlet property="retweetCountLabel" destination="jA6-pn-6Og" id="Yyn-hd-xRv"/>
                                             <outlet property="screenNameLabel" destination="Sll-Rk-PJH" id="ymY-iz-OdU"/>
                                             <outlet property="timestampLabel" destination="bPe-v9-ELY" id="XRg-J3-n7p"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
