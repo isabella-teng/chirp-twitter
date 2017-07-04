@@ -45,6 +45,7 @@ class TweetCell: UITableViewCell {
             retweeted = true
         } else {
             retweetButton.isSelected = false
+            retweeted = false
         }
         
     }
