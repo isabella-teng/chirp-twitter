@@ -22,9 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="c7H-FH-Tyj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="c7H-FH-Tyj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="TwitterLogoBlue" translatesAutoresizingMaskIntoConstraints="NO" id="q3I-LS-Bwu">
                                 <rect key="frame" x="103" y="237" width="168" height="192"/>
@@ -32,10 +31,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="c7H-FH-Tyj" secondAttribute="bottom" id="8sP-Q2-OCT"/>
                             <constraint firstItem="q3I-LS-Bwu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="87" id="Bit-ci-Lom"/>
                             <constraint firstItem="q3I-LS-Bwu" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="217" id="Cou-vW-V5n"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q3I-LS-Bwu" secondAttribute="trailing" constant="88" id="HRf-ft-a2J"/>
+                            <constraint firstAttribute="trailing" secondItem="c7H-FH-Tyj" secondAttribute="trailing" id="M0H-6l-24W"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="q3I-LS-Bwu" secondAttribute="bottom" constant="238" id="Vhq-p8-nc8"/>
+                            <constraint firstItem="c7H-FH-Tyj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tYQ-ve-ber"/>
+                            <constraint firstItem="c7H-FH-Tyj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="yfD-Hp-tgP"/>
                         </constraints>
                     </view>
                 </viewController>

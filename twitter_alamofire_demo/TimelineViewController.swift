@@ -31,6 +31,30 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error getting home timeline: " + error.localizedDescription)
             }
         }
+    
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.didPullToRefresh(_:)), for: .valueChanged)
+    }
+    
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        
+        
+//        // ... Create the URLRequest `myRequest` ...
+//        
+//        // Configure session so that completion handler is executed on main UI thread
+//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+//            
+//            // ... Use the new data to update the data source ...
+//            
+//            // Reload the tableView now that there is new data
+//            myTableView.reloadData()
+//            
+//            // Tell the refreshControl to stop spinning
+//            refreshControl.endRefreshing()
+//        }
+//        task.resume()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

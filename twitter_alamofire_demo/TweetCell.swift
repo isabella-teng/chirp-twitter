@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class TweetCell: UITableViewCell {
     
@@ -16,7 +18,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     
-    //add retween, like buttons
+    //add retweet, like buttons
     
     var tweet: Tweet! {
         didSet {
@@ -24,7 +26,12 @@ class TweetCell: UITableViewCell {
             timestampLabel.text = tweet.createdAtString
             screenNameLabel.text = tweet.user.name
             twitterHandleLabel.text = "@" + tweet.user.screenName!
-            
+            print("entered!!")
+            let validURL = URL(string: tweet.user.profPicURLString!)
+            if validURL != nil{
+                //print("entered!!")
+                userProfilePic.af_setImage(withURL: validURL!)
+            }
             
         }
     }
