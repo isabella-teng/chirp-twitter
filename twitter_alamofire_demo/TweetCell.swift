@@ -62,19 +62,36 @@ class TweetCell: UITableViewCell {
     
     @IBAction func onRetweetButton(_ sender: Any) {
         
-        var currentRetweetCount = tweet.retweetCount
-        
         if retweetButton.isSelected == false {
             retweetButton.isSelected = true
-            currentRetweetCount += 1
-            retweetCountLabel.text = String(currentRetweetCount)
+            tweet.retweeted = true
+            tweet.retweetCount += 1
             
+            retweetCountLabel.text = String(describing: tweet.retweetCount)
+            
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
+
         } else {
             retweetButton.isSelected = false
-            currentRetweetCount -= 1
-            retweetCountLabel.text = String(currentRetweetCount)
+            tweet.retweeted = false
+            tweet.retweetCount -= 1
+            
+             retweetCountLabel.text = String(describing: tweet.retweetCount)
+            
+            APIManager.shared.unretweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error unretweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
         }
-        
     }
 
     
