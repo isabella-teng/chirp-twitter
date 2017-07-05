@@ -91,34 +91,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         composeViewController.delegate = self
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object (post) to the new view controller.
-     }
-     */
-    
-    //compose view controller
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let composeViewController = segue.destination as! ComposeViewController
-//        //variable for the timelineviewcontroller
-//        
-//        composeViewController.delegate= self
-//    }
-//    
-//    func postTweet() {
-//        //fire the network request
-//        (don't need)timelineViewController.insertIntoTimeline(tweet: Tweet(dictionary[]))
-//     delegate?.insertIntoTimeline?(tweet: Tweet(dictionary[]))
-//    }
-//    
-//    func insertIntoTimeline(tweet: Tweet) {
-//        
-//    }
+
     
 }

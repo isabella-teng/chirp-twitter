@@ -16,14 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // MARK: TODO: Check for logged in user
+        //Check for logged in user
         
         if User.current != nil {
+            print("entereddd")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let timelineNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             self.window?.rootViewController = timelineNavController
             
         } else {
+            
             NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
                 print("Logout notification received")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

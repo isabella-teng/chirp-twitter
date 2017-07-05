@@ -57,7 +57,7 @@ class APIManager: SessionManager {
         
         // TODO: Clear current user by setting it to nil
         User.current = nil
-
+        
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
@@ -131,7 +131,6 @@ class APIManager: SessionManager {
             let tweet = Tweet(dictionary: tweetDictionary)
             completion(tweet, nil)
         }) { (error: OAuthSwiftError) in
-            print("HI")
             completion(nil, error.underlyingError)
         }
     }
