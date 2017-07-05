@@ -28,6 +28,7 @@
 		FAA9ABFD1F0AE55B00520429 /* Dosis-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9ABF61F0AE55A00520429 /* Dosis-Medium.ttf */; };
 		FAA9ABFE1F0AE55B00520429 /* Dosis-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9ABF71F0AE55A00520429 /* Dosis-Regular.ttf */; };
 		FAA9ABFF1F0AE55B00520429 /* Dosis-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA9ABF81F0AE55A00520429 /* Dosis-SemiBold.ttf */; };
+		FAA9AC011F0D5BC500520429 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA9AC001F0D5BC500520429 /* ComposeViewController.swift */; };
 		FF16E4C4F0649331033658F3 /* Pods_twitter_alamofire_demoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBE91109514C5BA32FE14C3 /* Pods_twitter_alamofire_demoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		FAA9ABF61F0AE55A00520429 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		FAA9ABF71F0AE55A00520429 /* Dosis-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Regular.ttf"; sourceTree = "<group>"; };
 		FAA9ABF81F0AE55A00520429 /* Dosis-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.ttf"; sourceTree = "<group>"; };
+		FAA9AC001F0D5BC500520429 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 			children = (
 				ED1AFD601E94496E00FD4B90 /* LoginViewController.swift */,
 				ED1D234B1EF6E42900C51ACC /* TimelineViewController.swift */,
+				FAA9AC001F0D5BC500520429 /* ComposeViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				ED1D23461EF63C1D00C51ACC /* User.swift in Sources */,
 				ED1D234E1EF71C4B00C51ACC /* TweetCell.swift in Sources */,
 				ED1D23481EF6E37700C51ACC /* Tweet.swift in Sources */,
+				FAA9AC011F0D5BC500520429 /* ComposeViewController.swift in Sources */,
 				ED1AFD611E94496E00FD4B90 /* LoginViewController.swift in Sources */,
 				ED1AFD5F1E94421000FD4B90 /* APIManager.swift in Sources */,
 				ED1AFD311E942B2500FD4B90 /* AppDelegate.swift in Sources */,

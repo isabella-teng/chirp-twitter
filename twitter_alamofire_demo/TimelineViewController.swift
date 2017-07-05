@@ -8,11 +8,13 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +80,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         APIManager.shared.logout()
     }
     
+    func didPost(post: Tweet) {
+        tweets.insert(post, at: 0)
+        self.tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let composeViewController = segue.destination as! ComposeViewController
+        //variable for the timelineviewcontroller
+        
+        composeViewController.delegate = self
+    }
+    
     
     /*
      // MARK: - Navigation
@@ -85,8 +99,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+     // Pass the selected object (post) to the new view controller.
      }
      */
+    
+    //compose view controller
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let composeViewController = segue.destination as! ComposeViewController
+//        //variable for the timelineviewcontroller
+//        
+//        composeViewController.delegate= self
+//    }
+//    
+//    func postTweet() {
+//        //fire the network request
+//        (don't need)timelineViewController.insertIntoTimeline(tweet: Tweet(dictionary[]))
+//     delegate?.insertIntoTimeline?(tweet: Tweet(dictionary[]))
+//    }
+//    
+//    func insertIntoTimeline(tweet: Tweet) {
+//        
+//    }
     
 }
