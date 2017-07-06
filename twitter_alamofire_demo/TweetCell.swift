@@ -31,6 +31,11 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     
+    
+//    override func layoutSubviews() {
+//        userProfilePic.layer.cornerRadius = 50
+//    }
+    
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
@@ -52,11 +57,11 @@ class TweetCell: UITableViewCell {
                 retweetCountLabel.text = String(tweet.retweetCount)
             }
             
-            
+//            userProfilePic.layer.cornerRadius = 50
             let validURL = URL(string: tweet.user.profPicURLString!)
             if validURL != nil{
                 userProfilePic.af_setImage(withURL: validURL!)
-            }
+                }
             }
         }
     
@@ -142,6 +147,8 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        userProfilePic.layer.cornerRadius = 50
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
