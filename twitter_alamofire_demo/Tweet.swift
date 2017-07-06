@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DateToolsSwift
 
 class Tweet {
     
@@ -34,7 +35,7 @@ class Tweet {
         let user = dictionary["user"] as! [String: Any]
         self.user = User(dictionary: user)
         
-        //Format and set createdAtString
+        //Format and set createdAtString using DateTools pod
         let createdAtOriginalString = dictionary["created_at"] as! String
         let formatter = DateFormatter()
         // Configure the input format to parse the date string
@@ -45,7 +46,10 @@ class Tweet {
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         // Convert Date to String
-        createdAtString = formatter.string(from: date)
+        
+        createdAtString = date.shortTimeAgoSinceNow
+        //createdAtString = formatter.string(from: date)
+
     }
     
     //returns tweets when initialized with array of Tweets
