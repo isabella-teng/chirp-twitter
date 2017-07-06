@@ -322,7 +322,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c8-Pa-1Ey">
-                                <rect key="frame" x="290" y="38" width="41" height="30"/>
+                                <rect key="frame" x="279" y="38" width="52" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Dosis-Regular" family="Dosis" pointSize="18"/>
                                 <state key="normal" title="Post!"/>
@@ -338,18 +338,26 @@
                                     <action selector="onCancelButton:" destination="Blq-aQ-IM4" eventType="touchUpInside" id="l8A-70-cNg"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KwV-I4-5Si">
+                                <rect key="frame" x="210" y="244" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Dosis-Light" family="Dosis" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="qGi-gx-slM" id="MNd-5m-XEk"/>
+                        <outlet property="characterCountTextField" destination="KwV-I4-5Si" id="S3P-pV-a7s"/>
                         <outlet property="postButton" destination="9c8-Pa-1Ey" id="tbS-IV-4h8"/>
                         <outlet property="tweetTextView" destination="ix6-L6-T5r" id="NO6-Pa-cnf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMA-br-hsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2866" y="346"/>
+            <point key="canvasLocation" x="2864.8000000000002" y="345.87706146926541"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nJH-aQ-SI5">

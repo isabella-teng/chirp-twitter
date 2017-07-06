@@ -31,12 +31,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="c7H-FH-Tyj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4tg-7a-aYr"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="c7H-FH-Tyj" secondAttribute="bottom" id="4yj-q8-zXO"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="c7H-FH-Tyj" secondAttribute="bottom" id="8sP-Q2-OCT"/>
+                            <constraint firstAttribute="trailing" secondItem="c7H-FH-Tyj" secondAttribute="trailing" id="9kp-vB-adS"/>
                             <constraint firstItem="q3I-LS-Bwu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="87" id="Bit-ci-Lom"/>
                             <constraint firstItem="q3I-LS-Bwu" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="217" id="Cou-vW-V5n"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q3I-LS-Bwu" secondAttribute="trailing" constant="88" id="HRf-ft-a2J"/>
                             <constraint firstAttribute="trailing" secondItem="c7H-FH-Tyj" secondAttribute="trailing" id="M0H-6l-24W"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="q3I-LS-Bwu" secondAttribute="bottom" constant="238" id="Vhq-p8-nc8"/>
+                            <constraint firstItem="c7H-FH-Tyj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="azH-AY-uVq"/>
                             <constraint firstItem="c7H-FH-Tyj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tYQ-ve-ber"/>
                             <constraint firstItem="c7H-FH-Tyj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="yfD-Hp-tgP"/>
                         </constraints>

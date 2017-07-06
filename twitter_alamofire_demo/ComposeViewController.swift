@@ -12,11 +12,12 @@ protocol ComposeViewControllerDelegate: class {
     func didPost(post: Tweet)
 }
 
-class ComposeViewController: UIViewController, UITextViewDelegate {
+class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var tweetTextView: UITextView!
+    @IBOutlet weak var characterCountTextField: UITextField!
     
     weak var delegate: ComposeViewControllerDelegate?
     
@@ -24,6 +25,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         tweetTextView.delegate = self
+        characterCountTextField.delegate = self
+        
+    }
+    
+    //for updating character count
+    
+    func updateCharacterCount() {
+        characterCountTextField.text = "\(tweetTextView.text.characters.count)/140"
     }
     
     //for placeholder text
@@ -34,6 +43,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
             firstTextEdit = false
         }
         textView.textColor = UIColor.black
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.updateCharacterCount()
     }
     
 
