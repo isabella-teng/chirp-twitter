@@ -12,7 +12,7 @@ protocol ComposeViewControllerDelegate: class {
     func didPost(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
@@ -22,9 +22,20 @@ class ComposeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tweetTextView.delegate = self
     }
+    
+    //for placeholder text
+    var firstTextEdit: Bool = true
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == tweetTextView && firstTextEdit {
+            textView.text = ""
+            firstTextEdit = false
+        }
+        textView.textColor = UIColor.black
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
