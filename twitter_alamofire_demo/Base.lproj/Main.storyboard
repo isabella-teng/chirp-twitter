@@ -260,7 +260,7 @@
                                             <outlet property="retweetCountLabel" destination="jA6-pn-6Og" id="Yyn-hd-xRv"/>
                                             <outlet property="screenNameLabel" destination="Sll-Rk-PJH" id="ymY-iz-OdU"/>
                                             <outlet property="timestampLabel" destination="bPe-v9-ELY" id="XRg-J3-n7p"/>
-                                            <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
+                                            <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="voM-qn-d7T"/>
                                             <outlet property="twitterHandleLabel" destination="6c6-n4-ERw" id="lGa-ID-8dx"/>
                                             <outlet property="userProfilePic" destination="UOY-Vl-jV3" id="E3x-Oa-h1S"/>
                                         </connections>

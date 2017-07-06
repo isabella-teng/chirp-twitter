@@ -9,19 +9,20 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import TTTAttributedLabel
 
 
 //protocol TweetCellDelegate {
 //    func didTapReply()
 //}
 
-class TweetCell: UITableViewCell {
+class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
-    @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var userProfilePic: UIImageView!
     @IBOutlet weak var twitterHandleLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     
     //add retweet, like buttons
     
@@ -32,12 +33,13 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     
-//    override func layoutSubviews() {
-//        userProfilePic.layer.cornerRadius = 50
-//    }
-    
     var tweet: Tweet! {
         didSet {
+            //Links clickable using TTTAttributedLabel Pod
+            tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            tweetTextLabel.isUserInteractionEnabled = true
+            tweetTextLabel.delegate = self
+
             tweetTextLabel.text = tweet.text
             timestampLabel.text = tweet.createdAtString
             screenNameLabel.text = tweet.user.name
@@ -64,6 +66,12 @@ class TweetCell: UITableViewCell {
                 }
             }
         }
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        UIApplication.shared.open(url, options: [ : ]) { (success: Bool) in
+            print("opened url")
+        }
+    }
     
     
     
