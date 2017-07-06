@@ -31,6 +31,7 @@ class Tweet {
         retweetCount = dictionary["retweet_count"] as! Int
         retweeted = dictionary["retweeted"] as! Bool
         
+        
         //initialize user
         let user = dictionary["user"] as! [String: Any]
         self.user = User(dictionary: user)
@@ -48,7 +49,6 @@ class Tweet {
         // Convert Date to String
         
         createdAtString = date.shortTimeAgoSinceNow
-        //createdAtString = formatter.string(from: date)
 
     }
     

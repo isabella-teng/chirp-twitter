@@ -53,13 +53,14 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
                 retweetButton.isSelected = true
             }
             
-            //to show the current
+            //to show the current counts
             favoriteCountLabel.text = String(tweet.favoriteCount)
-            if tweet.favorited {
+            if tweet.retweeted {
                 retweetCountLabel.text = String(tweet.retweetCount)
             }
-            let validURL = URL(string: tweet.user.profPicURLString!)
+            let validURL = tweet.user.profPicURL
             if validURL != nil{
+                print("entered!")
                 userProfilePic.af_setImage(withURL: validURL!)
                 }
             }
@@ -150,7 +151,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         super.awakeFromNib()
         // Initialization code
         
-        userProfilePic.layer.cornerRadius = 50
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

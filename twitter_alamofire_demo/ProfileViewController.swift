@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     var tweets: [Tweet] = []
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +29,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         
         getTweets()
+        
+        profileImageView.layer.cornerRadius = 25
+        profileImageView.clipsToBounds = true
+        let validURL = User.current?.profPicURL //URL(string: (User.current?.profPicURLString!)!)
+        if validURL != nil{
+            profileImageView.af_setImage(withURL: validURL!)
+        }
+        
+        fullNameLabel.text = User.current?.name
+        usernameLabel.text = User.current?.screenName
+        followersCountLabel.text = String(describing: User.current!.followersCount)
+        followingCountLabel.text = String(describing: User.current!.followingCount)
+        
     }
     
     func getTweets() {
-        APIManager.shared.getHomeTimeLine { (tweets, error) in
+        APIManager.shared.getUserTimeLine { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
             } else if let error = error {
-                print("Error getting home timeline: " + error.localizedDescription)
+                print("Error getting user timeline: " + error.localizedDescription)
             }
         }
     }
