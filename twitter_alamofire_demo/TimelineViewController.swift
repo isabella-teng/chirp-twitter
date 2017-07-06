@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate, ReplyViewControllerDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate, ReplyViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
     
@@ -44,6 +44,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+        //Perform segue to profile view controller
+        performSegue(withIdentifier: "profileSegue", sender: user)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -85,6 +90,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         getTweets()
         refreshControl.endRefreshing()
@@ -102,6 +108,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         cell.userProfilePic.clipsToBounds = true
         
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         
         return cell
     }

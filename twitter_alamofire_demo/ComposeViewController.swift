@@ -51,6 +51,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         self.updateCharacterCount()
         if tweetTextView.text.characters.count > 140 {
             characterCountTextField.textColor = UIColor.red
+        } else {
+            characterCountTextField.textColor = UIColor.black
         }
     }
 

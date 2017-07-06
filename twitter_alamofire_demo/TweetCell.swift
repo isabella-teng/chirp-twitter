@@ -12,9 +12,9 @@ import AlamofireImage
 import TTTAttributedLabel
 
 
-//protocol TweetCellDelegate {
-//    func didTapReply()
-//}
+protocol TweetCellDelegate: class {
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+}
 
 class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
@@ -24,13 +24,12 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     
-    //add retweet, like buttons
-    
-    
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    
+    weak var delegate: TweetCellDelegate?
     
     
     var tweet: Tweet! {
@@ -60,7 +59,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             }
             let validURL = tweet.user.profPicURL
             if validURL != nil{
-                print("entered!")
                 userProfilePic.af_setImage(withURL: validURL!)
                 }
             }
@@ -71,6 +69,13 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             print("opened url")
         }
     }
+    
+    func didTapUserProfile(_ sender: UITapGestureRecognizer) {
+        // Call method on delegate
+        delegate?.tweetCell(self, didTap: tweet.user)
+        
+    }
+
     
     @IBAction func onRetweetButton(_ sender: Any) {
         
@@ -150,6 +155,11 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
+        
+        userProfilePic.addGestureRecognizer(profileTapGestureRecognizer)
+        userProfilePic.isUserInteractionEnabled = true
         
     }
     
