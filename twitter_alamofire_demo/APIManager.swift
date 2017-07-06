@@ -79,11 +79,12 @@ class APIManager: SessionManager {
                 completion(User(dictionary: userDictionary), nil)
         }
     }
-        
+    
+    //Get User Timeline
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
 
-//         This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
-//         tweets,
+//         This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh tweets,
+        
         if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
             let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
             let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
@@ -120,7 +121,7 @@ class APIManager: SessionManager {
         }
     }
     
-    //Posting a Tweet
+    //Compose Tweet
     func composeTweet(with text: String, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/statuses/update.json"
         let parameters = ["status": text]
@@ -136,8 +137,6 @@ class APIManager: SessionManager {
     }
     
     //Favorite a Tweet
-    
-    
     func favorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/favorites/create.json"
         let parameters = ["id": tweet.id]
@@ -200,11 +199,6 @@ class APIManager: SessionManager {
             }
         }
     }
-
-    
-    // MARK: TODO: Compose Tweet
-    
-    // MARK: TODO: Get User Timeline
     
     
     //--------------------------------------------------------------------------------//

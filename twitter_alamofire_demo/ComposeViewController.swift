@@ -27,10 +27,12 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         tweetTextView.delegate = self
         characterCountTextField.delegate = self
         
+        tweetTextView.layer.borderWidth = 1
+        tweetTextView.layer.borderColor = UIColor.black.cgColor
+        
     }
     
     //for updating character count
-    
     func updateCharacterCount() {
         characterCountTextField.text = "\(tweetTextView.text.characters.count)/140"
     }
@@ -47,8 +49,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     
     func textViewDidChange(_ textView: UITextView) {
         self.updateCharacterCount()
+        if tweetTextView.text.characters.count > 140 {
+            characterCountTextField.textColor = UIColor.red
+        }
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,8 +66,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     }
     
     @IBAction func onPostButton(_ sender: Any) {
-        //let fullTweet = tweetTextView.text!
-        print(tweetTextView.text)
+        
         APIManager.shared.composeTweet(with: tweetTextView.text) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
@@ -75,21 +78,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         
         self.dismiss(animated: true)
     }
-    
-//    func didPost(post: Tweet) {
-//        print("tweet has posted")
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            let composeViewController = segue.destination as! ComposeViewController
-//            //variable for the timelineviewcontroller
-//        
-//            composeViewController.delegate = self
-//    }
-
-        
-    
-    
     
     
 

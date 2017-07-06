@@ -58,8 +58,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             if tweet.favorited {
                 retweetCountLabel.text = String(tweet.retweetCount)
             }
-            
-//            userProfilePic.layer.cornerRadius = 50
             let validURL = URL(string: tweet.user.profPicURLString!)
             if validURL != nil{
                 userProfilePic.af_setImage(withURL: validURL!)
@@ -72,8 +70,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             print("opened url")
         }
     }
-    
-    
     
     @IBAction func onRetweetButton(_ sender: Any) {
         
@@ -114,8 +110,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         //Update the local tweet model
         //Update cell UI
         //Send a POST request to the POST favorites/create endpoint
-        
-        //var currentFavoriteCount = self.tweet.favoriteCount
         
         if likeButton.isSelected == false {
             tweet.favorited = true

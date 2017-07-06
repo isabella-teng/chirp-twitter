@@ -9,11 +9,15 @@
 import UIKit
 
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate, ReplyViewControllerDelegate {
     
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
+    
+    //For infinite scrolling
+    var isMoreDataLoading = false
+    var loadingMoreView:InfiniteScroll?
     
     
     override func viewDidLoad() {
@@ -25,23 +29,52 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = 200 //UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
-        APIManager.shared.getHomeTimeLine { (tweets, error) in
-            if let tweets = tweets {
-                self.tweets = tweets
-                self.tableView.reloadData()
-            } else if let error = error {
-                print("Error getting home timeline: " + error.localizedDescription)
-            }
-        }
+        //Infinite scroll activity indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScroll.defaultHeight)
+        loadingMoreView = InfiniteScroll(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScroll.defaultHeight
+        tableView.contentInset = insets
+        
+        getTweets()
     
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Handle scroll behavior here
+        if (!isMoreDataLoading) {
+            //Calculate position of one screen length before bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffSetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffSetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                
+                //Update position of loadingMoreView, start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScroll.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+                
+                loadMoreData()
+            }
+        }
+    }
     
-    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        
+    func loadMoreData() {
+        isMoreDataLoading = false
+        getTweets()
+        loadingMoreView!.stopAnimating()
+        tableView.reloadData()
+    }
+    
+    func getTweets() {
         APIManager.shared.getHomeTimeLine { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
@@ -50,7 +83,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error getting home timeline: " + error.localizedDescription)
             }
         }
-        
+    }
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        getTweets()
         refreshControl.endRefreshing()
     }
     
@@ -62,7 +98,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         //round profile pic corners
-        cell.userProfilePic.layer.cornerRadius = 25
+        cell.userProfilePic.layer.cornerRadius = 15
         cell.userProfilePic.clipsToBounds = true
         
         cell.tweet = tweets[indexPath.row]
@@ -79,8 +115,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func didTapLogout(_ sender: Any) {
+    @IBAction func onLogout(_ sender: Any) {
         APIManager.shared.logout()
     }
     
@@ -89,11 +124,23 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData()
     }
     
+    func didPostReply(post: Tweet) {
+        print("replied to user")
+    }
+    
+    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let composeViewController = segue.destination as! ComposeViewController
-        //variable for the timelineviewcontroller
+        if (segue.identifier == "composeSegue") {
+            let composeViewController = segue.destination as! ComposeViewController
+            //variable for the timelineviewcontroller
+            composeViewController.delegate = self
+        } else if (segue.identifier == "replySegue") {
+            let replyViewController = segue.destination as! ReplyViewController
+            replyViewController.delegate = self
+        }
         
-        composeViewController.delegate = self
+        
     }
 
     
