@@ -14,6 +14,7 @@ class User {
     var name: String
     var screenName: String?
     var profPicURL: URL?
+    var backgroundURL: URL?
     var followersCount: Int //Display followers count of current user
     var followingCount: Int //Display following count of current user
     
@@ -27,7 +28,8 @@ class User {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as? String
-        profPicURL = URL(string: dictionary["profile_image_url_https"] as! String)  //dictionary["profile_image_url_https"]
+        profPicURL = URL(string: dictionary["profile_image_url_https"] as! String)
+        backgroundURL = URL(string: dictionary["profile_background_image_url_https"] as! String)
         
         followersCount = dictionary["followers_count"] as! Int
         followingCount = dictionary["friends_count"] as! Int

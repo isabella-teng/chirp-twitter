@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImageView.layer.cornerRadius = 25
         profileImageView.clipsToBounds = true
         let validURL = User.current?.profPicURL //URL(string: (User.current?.profPicURLString!)!)
-        if validURL != nil{
+        if validURL != nil {
             profileImageView.af_setImage(withURL: validURL!)
+        }
+        
+        let validBackgroundURL = User.current?.backgroundURL
+        if validBackgroundURL != nil {
+            backgroundImageView.af_setImage(withURL: validBackgroundURL!)
         }
         
         fullNameLabel.text = User.current?.name
