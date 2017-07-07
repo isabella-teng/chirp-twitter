@@ -17,6 +17,7 @@ class User {
     var backgroundURL: URL?
     var followersCount: Int //Display followers count of current user
     var followingCount: Int //Display following count of current user
+    //var userID: String?
     
     // For user persistance
     var dictionary: [String: Any]?
@@ -33,6 +34,7 @@ class User {
         
         followersCount = dictionary["followers_count"] as! Int
         followingCount = dictionary["friends_count"] as! Int
+        //userId =
         
     }
     

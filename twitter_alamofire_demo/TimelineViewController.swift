@@ -12,6 +12,7 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, UIScrollViewDelegate, ReplyViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
+    var profileUser: User?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -46,10 +47,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.insertSubview(refreshControl, at: 0)
     }
     
-    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
-        //Perform segue to profile view controller
-        performSegue(withIdentifier: "profileSegue", sender: user)
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Handle scroll behavior here
@@ -117,13 +114,19 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+        //Perform segue to profile view controller
+        performSegue(withIdentifier: "profileSegue", sender: user)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogout(_ sender: Any) {
+    @IBAction func onLogoutButton(_ sender: Any) {
         APIManager.shared.logout()
+        print("user logged out")
     }
     
     func didPost(post: Tweet) {
@@ -145,6 +148,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "replySegue") {
             let replyViewController = segue.destination as! ReplyViewController
             replyViewController.delegate = self
+        } else if (segue.identifier == "profileSegue") {
+            let vc = segue.destination as! ProfileViewController
+            vc.profileUser = sender as! User
+//            APIManager.shared.saveUserScreenName(userScreenName: vc.profileUser.screenName!)
+        
         }
         
         

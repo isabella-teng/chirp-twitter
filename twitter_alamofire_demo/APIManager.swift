@@ -53,12 +53,14 @@ class APIManager: SessionManager {
     
     func logout() {
         
+        print("hello")
         clearCredentials() //this clears the tokens in keychain
         
         // TODO: Clear current user by setting it to nil
         User.current = nil
         
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+        
     }
     
     func getCurrentAccount(completion: @escaping (User?, Error?) -> ()) {
@@ -121,23 +123,31 @@ class APIManager: SessionManager {
         }
     }
     
+    //get user screenname
+    
+    var screenName: String = ""
+    
+    func saveUserScreenName(userScreenName: String) {
+        screenName = userScreenName
+    }
+    
     //Get User Timeline
     func getUserTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
         
-        //         This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh tweets,
+//                 This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh tweets,
         
-        if let data = UserDefaults.standard.object(forKey: "usertimeline_tweets") as? Data {
-            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-                Tweet(dictionary: dictionary)
-            })
-            
-            completion(tweets, nil)
-            return
-        }
+//        if let data = UserDefaults.standard.object(forKey: "usertimeline_tweets") as? Data {
+//            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
+//            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+//                Tweet(dictionary: dictionary)
+//            })
+//            
+//            completion(tweets, nil)
+//            return
+//        }
         
         //Call Alamofire request method
-        request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!, method: .get)
+        request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + "\(screenName)")!, method: .get)
             .validate()
             .responseJSON { (response) in
                 guard response.result.isSuccess else {
@@ -150,10 +160,6 @@ class APIManager: SessionManager {
                     completion(nil, error)
                     return
                 }
-                
-                let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
-                UserDefaults.standard.set(data, forKey: "usertimeline_tweets")
-                UserDefaults.standard.synchronize()
                 
                 let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
                     Tweet(dictionary: dictionary)
