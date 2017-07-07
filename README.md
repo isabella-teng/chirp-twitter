@@ -52,6 +52,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories:
 
 [Imgur](http://i.imgur.com/F6lfPXm.gifv)
+
 AutoLayout functionality of the app: [Imgur](http://i.imgur.com/L64jfoU.gifv)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
