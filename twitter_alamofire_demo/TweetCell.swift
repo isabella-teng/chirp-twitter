@@ -160,8 +160,6 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         super.awakeFromNib()
         // Initialization code
         
-        //tweetTextLabel.preferredMaxLayoutWidth = 200
-        //tweetTextLabel.sizeToFit()
         
         let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
         

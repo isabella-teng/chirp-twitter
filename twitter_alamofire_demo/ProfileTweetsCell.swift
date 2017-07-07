@@ -11,13 +11,13 @@ import TTTAttributedLabel
 import Alamofire
 import AlamofireImage
 
-class ProfileTweetsCell: UITableViewCell {
+class ProfileTweetsCell: UITableViewCell, TTTAttributedLabelDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
-    @IBOutlet weak var tweetTextView: UILabel!
+    @IBOutlet weak var tweetTextView: TTTAttributedLabel!
     
     
     @IBOutlet weak var replyButton: UIButton!
@@ -30,6 +30,12 @@ class ProfileTweetsCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            //Links clickable using TTTAttributedLabel Pod
+            tweetTextView.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            
+            tweetTextView.isUserInteractionEnabled = true
+            tweetTextView.delegate = self
+            
             tweetTextView.text = tweet.text
             timeStampLabel.text = tweet.createdAtString
             screenNameLabel.text = tweet.user.name
@@ -55,9 +61,14 @@ class ProfileTweetsCell: UITableViewCell {
             profileImageView.clipsToBounds = true
             let validURL = tweet.user.profPicURL
             if validURL != nil{
-                //print(hi)
                 profileImageView.af_setImage(withURL: validURL!)
             }
+        }
+    }
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        UIApplication.shared.open(url, options: [ : ]) { (success: Bool) in
+            print("opened url")
         }
     }
     

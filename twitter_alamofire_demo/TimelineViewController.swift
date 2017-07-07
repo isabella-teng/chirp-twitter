@@ -127,9 +127,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     @IBAction func onLogoutButton(_ sender: Any) {
-
+        
         APIManager.shared.logout()
-        print("herro")
+        
     }
     
     func didPost(post: Tweet) {
@@ -141,6 +141,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         print("replied to user")
     }
     
+    @IBAction func onReplyButton(_ sender: Any) {
+        performSegue(withIdentifier: "replySegue", sender: profileUser)
+    }
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -151,7 +154,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "replySegue") {
             let replyViewController = segue.destination as! ReplyViewController
             replyViewController.delegate = self
-            //replyViewController.profileUser =
+            //if sender
+            //replyViewController.replyToUser = sender as! User
         } else if (segue.identifier == "profileSegue") {
             let vc = segue.destination as! ProfileViewController
             vc.profileUser = sender as! User

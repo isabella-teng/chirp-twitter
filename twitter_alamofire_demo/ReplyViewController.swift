@@ -20,12 +20,20 @@ class ReplyViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: ReplyViewControllerDelegate?
     
-    var profileUser: User?
+    var replyToUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         replyTextView.delegate = self
+        
+        screenNameLabel.text = replyToUser?.screenName
+        let validURL = replyToUser?.profPicURL
+        if (validURL != nil) {
+            profileImageView.af_setImage(withURL: validURL!)
+        }
+        
+        
 
     }
 
