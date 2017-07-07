@@ -52,8 +52,6 @@ class APIManager: SessionManager {
     }
     
     func logout() {
-        
-        print("hello")
         clearCredentials() //this clears the tokens in keychain
         
         // TODO: Clear current user by setting it to nil

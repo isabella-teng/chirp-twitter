@@ -124,9 +124,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+
     @IBAction func onLogoutButton(_ sender: Any) {
         APIManager.shared.logout()
-        print("user logged out")
     }
     
     func didPost(post: Tweet) {
@@ -148,10 +148,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "replySegue") {
             let replyViewController = segue.destination as! ReplyViewController
             replyViewController.delegate = self
+            //replyViewController.profileUser =
         } else if (segue.identifier == "profileSegue") {
             let vc = segue.destination as! ProfileViewController
             vc.profileUser = sender as! User
-//            APIManager.shared.saveUserScreenName(userScreenName: vc.profileUser.screenName!)
         
         }
         

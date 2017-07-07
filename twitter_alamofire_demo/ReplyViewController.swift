@@ -20,6 +20,8 @@ class ReplyViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: ReplyViewControllerDelegate?
     
+    var profileUser: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
