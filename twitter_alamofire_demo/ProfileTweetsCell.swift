@@ -37,10 +37,14 @@ class ProfileTweetsCell: UITableViewCell {
             
             if tweet.favorited {
                 favoriteButton.isSelected = true
+            } else {
+                favoriteButton.isSelected = false
             }
             
             if tweet.retweeted {
                 retweetButton.isSelected = true
+            } else {
+                retweetButton.isSelected = false
             }
             
             //to show the current
@@ -59,7 +63,7 @@ class ProfileTweetsCell: UITableViewCell {
     
     
     @IBAction func onRetweetButton(_ sender: Any) {
-        if retweetButton.isSelected == false {
+        if !tweet.retweeted {
             retweetButton.isSelected = true
             tweet.retweeted = true
             tweet.retweetCount += 1
@@ -94,7 +98,7 @@ class ProfileTweetsCell: UITableViewCell {
     
 
     @IBAction func onFavoriteButton(_ sender: Any) {
-        if favoriteButton.isSelected == false {
+        if !tweet.favorited {
             tweet.favorited = true
             tweet.favoriteCount += 1
             favoriteButton.isSelected = true

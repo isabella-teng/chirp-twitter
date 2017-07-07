@@ -40,16 +40,21 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             tweetTextLabel.delegate = self
 
             tweetTextLabel.text = tweet.text
+            tweetTextLabel.adjustsFontSizeToFitWidth = true
             timestampLabel.text = tweet.createdAtString
             screenNameLabel.text = tweet.user.name
             twitterHandleLabel.text = "@" + tweet.user.screenName!
             
             if tweet.favorited {
                 likeButton.isSelected = true
+            } else {
+                likeButton.isSelected = false
             }
             
             if tweet.retweeted {
                 retweetButton.isSelected = true
+            } else {
+                retweetButton.isSelected = false
             }
             
             //to show the current counts
@@ -78,7 +83,7 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     @IBAction func onRetweetButton(_ sender: Any) {
         
-        if retweetButton.isSelected == false {
+        if !tweet.retweeted {
             retweetButton.isSelected = true
             tweet.retweeted = true
             tweet.retweetCount += 1
@@ -116,7 +121,7 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         //Update cell UI
         //Send a POST request to the POST favorites/create endpoint
         
-        if likeButton.isSelected == false {
+        if !tweet.favorited {
             tweet.favorited = true
             tweet.favoriteCount += 1
             likeButton.isSelected = true

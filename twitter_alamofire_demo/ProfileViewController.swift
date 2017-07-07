@@ -56,6 +56,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         usernameLabel.text = profileUser.screenName
         followersCountLabel.text = String(describing: profileUser.followersCount)
         followingCountLabel.text = String(describing: profileUser.followingCount)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.didPullToRefresh(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+
     }
     
     func getTweets() {
@@ -67,6 +72,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Error getting user timeline: " + error.localizedDescription)
             }
         }
+    }
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        getTweets()
+        refreshControl.endRefreshing()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

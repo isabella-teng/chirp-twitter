@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            self.window?.rootViewController = loginVC
 //        }
 
-        
         return true
     }
     
