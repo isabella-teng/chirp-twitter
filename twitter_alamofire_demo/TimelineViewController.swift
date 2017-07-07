@@ -27,7 +27,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 200 //UITableViewAutomaticDimension
+        tableView.rowHeight = 200//UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
         //Infinite scroll activity indicator
@@ -71,6 +71,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadMoreData() {
         getTweets()
+        let lastTweet = tweets[tweets.count - 1]
+        APIManager.shared.saveMaxID(lastTweetID: "\(lastTweet.id)")
+        
         loadingMoreView!.stopAnimating()
         tableView.reloadData()
         isMoreDataLoading = false

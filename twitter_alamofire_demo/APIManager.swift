@@ -82,12 +82,16 @@ class APIManager: SessionManager {
         }
     }
     
+    var maxID: String = ""
+    func saveMaxID(lastTweetID: String) {
+        maxID = "?max_id=" + lastTweetID
+    }
 
     //Get Home Timeline
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
 
 //         This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh tweets,
-        
+//        
         if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
             let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
             let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
@@ -99,7 +103,7 @@ class APIManager: SessionManager {
         }
         
         //Call Alamofire request method
-        request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get)
+        request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json" + maxID)!, method: .get)
             .validate()
             .responseJSON { (response) in
                 guard response.result.isSuccess else {
@@ -126,7 +130,6 @@ class APIManager: SessionManager {
     
     //get user screenname
     var screenName: String = ""
-    
     func saveUserScreenName(userScreenName: String) {
         screenName = userScreenName
     }
