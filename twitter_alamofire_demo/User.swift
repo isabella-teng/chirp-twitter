@@ -34,7 +34,6 @@ class User {
         
         followersCount = dictionary["followers_count"] as! Int
         followingCount = dictionary["friends_count"] as! Int
-        //userId =
         
     }
     

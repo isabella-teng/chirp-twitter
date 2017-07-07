@@ -70,13 +70,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadMoreData() {
-        isMoreDataLoading = false
         getTweets()
         loadingMoreView!.stopAnimating()
         tableView.reloadData()
+        isMoreDataLoading = false
     }
     
     func getTweets() {
+    
         APIManager.shared.getHomeTimeLine { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
@@ -126,7 +127,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     @IBAction func onLogoutButton(_ sender: Any) {
+
         APIManager.shared.logout()
+        print("herro")
     }
     
     func didPost(post: Tweet) {

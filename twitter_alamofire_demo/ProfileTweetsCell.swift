@@ -45,9 +45,7 @@ class ProfileTweetsCell: UITableViewCell {
             
             //to show the current
             favoriteCountLabel.text = String(tweet.favoriteCount)
-            if tweet.favorited {
-                retweetCountLabel.text = String(tweet.retweetCount)
-            }
+            retweetCountLabel.text = String(tweet.retweetCount)
             
             profileImageView.layer.cornerRadius = 15
             profileImageView.clipsToBounds = true

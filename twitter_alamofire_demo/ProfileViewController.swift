@@ -39,6 +39,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImageView.layer.cornerRadius = 25
         profileImageView.clipsToBounds = true
         
+        tableView.rowHeight = 200 //UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+        
         let validURL = profileUser.profPicURL
         if validURL != nil {
             profileImageView.af_setImage(withURL: validURL!)

@@ -54,9 +54,8 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             
             //to show the current counts
             favoriteCountLabel.text = String(tweet.favoriteCount)
-            if tweet.retweeted {
-                retweetCountLabel.text = String(tweet.retweetCount)
-            }
+            retweetCountLabel.text = String(tweet.retweetCount)
+    
             let validURL = tweet.user.profPicURL
             if validURL != nil{
                 userProfilePic.af_setImage(withURL: validURL!)
@@ -155,6 +154,9 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        //tweetTextLabel.preferredMaxLayoutWidth = 200
+        //tweetTextLabel.sizeToFit()
         
         let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
         
